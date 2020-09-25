@@ -36,13 +36,13 @@ contract AddressList is AccessControl, IAddressList {
         return theList.get(a);
     }
 
+    ///////////////////////////////////////////////////////////////
+
     // Admin: add (address,1) to list
     function add(address a) external override returns (bool) {
         require(hasRole(LIST_ADMIN, msg.sender));
 	return _add(a, 1);
     }
-
-    ///////////////////////////////////////////////////////////////
 
     // Admin: add (address, n) to list
     function addValue(address a, uint256 v) external override returns (bool) {
