@@ -45,6 +45,15 @@ scenarios as an on-chain (address,address) mapping, or even an on-chain
 The only requirements are that both key (address) and value (uint256)
 must be non-zero.
 
+## Role in governance
+
+One use case for AddressList is as a administered list, for an otherwise
+decentralized system.   For example, a permissionless asset management
+system, with no owner, that relies on a administered token whitelist
+provided by AddressList.  The gateway into this example system is
+provided by an administrative multi-sig or DAO managing a list of
+token addresses.
+
 ## Administration
 
 Token lists are administered by a list administrator, so delegated 
