@@ -8,8 +8,13 @@ import './AddressList.sol';
 
 contract AddressListFactory is IAddressListFactory {
     address[] private allLists;
+    mapping(address => bool) private isOurs;
 
     constructor() public {
+    }
+
+    function ours(address a) external override view returns (bool) {
+        return isOurs[a];
     }
 
     function listCount() external override view returns (uint) {
@@ -22,8 +27,14 @@ contract AddressListFactory is IAddressListFactory {
     }
 
     function createList() external override returns (address listaddr) {
+        // create new address list contract
         listaddr = address(new AddressList(msg.sender));
+
+        // note our creation
         allLists.push(listaddr);
+        isOurs[listaddr] = true;
+
+        // log our creation
         emit ListCreated(msg.sender, listaddr);
     }
 }
