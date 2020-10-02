@@ -18,12 +18,12 @@ contract AddressListFactory is IAddressListFactory {
 
     function listAt(uint idx) external override view returns (address) {
         require(idx < allLists.length);
-	return allLists[idx];
+        return allLists[idx];
     }
 
     function createList() external override returns (address listaddr) {
-        listaddr = address(new AddressList());
-	allLists.push(listaddr);
-	emit ListCreated(msg.sender, listaddr);
+        listaddr = address(new AddressList(msg.sender));
+        allLists.push(listaddr);
+        emit ListCreated(msg.sender, listaddr);
     }
 }

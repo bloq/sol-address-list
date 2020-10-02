@@ -14,9 +14,9 @@ contract AddressList is AccessControl, IAddressList {
     bytes32 public constant LIST_ADMIN = keccak256("LIST_ADMIN");
 
     // initialize owner and list-admin roles
-    constructor() public {
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-	_setupRole(LIST_ADMIN, msg.sender);
+    constructor(address owner) public {
+        _setupRole(DEFAULT_ADMIN_ROLE, owner);
+        _setupRole(LIST_ADMIN, owner);
     }
 
     ///////////////////////////////////////////////////////////////
@@ -41,41 +41,41 @@ contract AddressList is AccessControl, IAddressList {
     // Admin: add (address,1) to list
     function add(address a) external override returns (bool) {
         require(hasRole(LIST_ADMIN, msg.sender));
-	return _add(a, 1);
+        return _add(a, 1);
     }
 
     // Admin: add (address, n) to list
     function addValue(address a, uint256 v) external override returns (bool) {
         require(hasRole(LIST_ADMIN, msg.sender));
-	return _add(a, v);
+        return _add(a, v);
     }
 
     // Admin: remove address from list
     function remove(address a) external override returns (bool) {
         require(hasRole(LIST_ADMIN, msg.sender));
-	return _remove(a);
+        return _remove(a);
     }
 
     ///////////////////////////////////////////////////////////////
 
     function _add(address a, uint256 v) private returns (bool) {
-	require(v != 0);
-	if (theList.get(a) != v) {
-	    theList.set(a, v);
-	    emit AddressUpdated(a, msg.sender);
-	    return true;
-	}
+        require(v != 0);
+        if (theList.get(a) != v) {
+            theList.set(a, v);
+            emit AddressUpdated(a, msg.sender);
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     function _remove(address a) private returns (bool) {
-	bool removed = theList.remove(a);
+        bool removed = theList.remove(a);
         if (removed) {
-	    emit AddressRemoved(a, msg.sender);
-	    return true;
-	}
+            emit AddressRemoved(a, msg.sender);
+            return true;
+        }
 
-	return false;
+        return false;
     }
 }
