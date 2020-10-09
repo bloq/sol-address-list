@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.6;
@@ -10,19 +9,16 @@ contract AddressListFactory is IAddressListFactory {
     address[] private allLists;
     mapping(address => bool) private isOurs;
 
-    constructor() public {
-    }
-
-    function ours(address a) external override view returns (bool) {
+    function ours(address a) external view override returns (bool) {
         return isOurs[a];
     }
 
-    function listCount() external override view returns (uint) {
+    function listCount() external view override returns (uint256) {
         return allLists.length;
     }
 
-    function listAt(uint idx) external override view returns (address) {
-        require(idx < allLists.length, "Index exceeds list length");
+    function listAt(uint256 idx) external view override returns (address) {
+        require(idx < allLists.length, 'Index exceeds list length');
         return allLists[idx];
     }
 

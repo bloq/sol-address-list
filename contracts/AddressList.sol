@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.6;
@@ -11,11 +10,11 @@ contract AddressList is AccessControl, IAddressList {
     using EnumerableMap for EnumerableMap.AddressToUintMap;
     EnumerableMap.AddressToUintMap private theList;
 
-    bytes32 public constant LIST_ADMIN = keccak256("LIST_ADMIN");
+    bytes32 public constant LIST_ADMIN = keccak256('LIST_ADMIN');
 
     modifier onlyListAdmin() {
-        require(hasRole(LIST_ADMIN, msg.sender), "Sender lacks LIST_ADMIN role");
-	_;
+        require(hasRole(LIST_ADMIN, msg.sender), 'Sender lacks LIST_ADMIN role');
+        _;
     }
 
     // initialize owner and list-admin roles
@@ -61,7 +60,7 @@ contract AddressList is AccessControl, IAddressList {
     ///////////////////////////////////////////////////////////////
 
     function _add(address a, uint256 v) private returns (bool) {
-        require(v != 0, "Metadata value v cannot be zero");
+        require(v != 0, 'Metadata value v cannot be zero');
         if (!theList.contains(a) || theList.get(a) != v) {
             theList.set(a, v);
             emit AddressUpdated(a, msg.sender);
