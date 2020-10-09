@@ -1,6 +1,6 @@
 {
   "name": "address-list",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "address list smart contract",
   "main": "truffle-config.js",
   "directories": {
