@@ -28,6 +28,14 @@ module.exports = {
 		gasPrice: 5000000000, // 5 Gwei
 		skipDryRun: true
 	  },
+          xdai: {
+                provider: new HDWalletProvider(
+                     process.env.DEPLOYMENT_ACCOUNT_KEY,
+                     "https://dai.poa.network"),
+                network_id: 100,
+	        gas: 6000000,
+                gasPrice: 1000000000
+          },
 	  mainnet: {
 	    provider: new HDWalletProvider(process.env.DEPLOYMENT_ACCOUNT_KEY, config.provider),
 	    network_id: 1,
