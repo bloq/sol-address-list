@@ -13,6 +13,11 @@ contract AddressList is AccessControl, IAddressList {
 
     bytes32 public constant LIST_ADMIN = keccak256("LIST_ADMIN");
 
+    modifier onlyListAdmin() {
+        require(hasRole(LIST_ADMIN, msg.sender), "Sender lacks LIST_ADMIN role");
+	_;
+    }
+
     // initialize owner and list-admin roles
     constructor(address owner) public {
         _setupRole(DEFAULT_ADMIN_ROLE, owner);
@@ -39,27 +44,24 @@ contract AddressList is AccessControl, IAddressList {
     ///////////////////////////////////////////////////////////////
 
     // Admin: add (address,1) to list
-    function add(address a) external override returns (bool) {
-        require(hasRole(LIST_ADMIN, msg.sender));
+    function add(address a) external override onlyListAdmin returns (bool) {
         return _add(a, 1);
     }
 
     // Admin: add (address, n) to list
-    function addValue(address a, uint256 v) external override returns (bool) {
-        require(hasRole(LIST_ADMIN, msg.sender));
+    function addValue(address a, uint256 v) external override onlyListAdmin returns (bool) {
         return _add(a, v);
     }
 
     // Admin: remove address from list
-    function remove(address a) external override returns (bool) {
-        require(hasRole(LIST_ADMIN, msg.sender));
+    function remove(address a) external override onlyListAdmin returns (bool) {
         return _remove(a);
     }
 
     ///////////////////////////////////////////////////////////////
 
     function _add(address a, uint256 v) private returns (bool) {
-        require(v != 0);
+        require(v != 0, "Metadata value v cannot be zero");
         if (!theList.contains(a) || theList.get(a) != v) {
             theList.set(a, v);
             emit AddressUpdated(a, msg.sender);
