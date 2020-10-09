@@ -22,7 +22,7 @@ contract AddressListFactory is IAddressListFactory {
     }
 
     function listAt(uint idx) external override view returns (address) {
-        require(idx < allLists.length);
+        require(idx < allLists.length, "Index exceeds list length");
         return allLists[idx];
     }
 
