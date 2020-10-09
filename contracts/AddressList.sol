@@ -33,7 +33,7 @@ contract AddressList is AccessControl, IAddressList {
 
     // Anyone: query value associated with address.  returns zero if absent.
     function get(address a) external view override returns (uint256) {
-        return theList.get(a);
+        return theList.contains(a) ? theList.get(a) : 0;
     }
 
     ///////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ contract AddressList is AccessControl, IAddressList {
 
     function _add(address a, uint256 v) private returns (bool) {
         require(v != 0);
-        if (theList.get(a) != v) {
+        if (!theList.contains(a) || theList.get(a) != v) {
             theList.set(a, v);
             emit AddressUpdated(a, msg.sender);
             return true;
