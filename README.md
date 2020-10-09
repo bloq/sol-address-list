@@ -10,7 +10,7 @@ on-chain mapping data type.
 
 ## Overview
 
-The primary use is for creating on-chain filtering lists, or creating
+The primary uses include governance, on-chain security, creating on-chain filtering lists, or creating
 contract<->contract proxy routes.  A key motivation was mirroring
 the off-chain [Token Lists](https://uniswap.org/blog/token-lists/)
 with similar on-chain infrastructure.
