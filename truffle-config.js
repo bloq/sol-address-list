@@ -28,6 +28,14 @@ module.exports = {
 		gasPrice: 5000000000, // 5 Gwei
 		skipDryRun: true
 	  },
+          etc: {
+                provider: new HDWalletProvider(
+                     process.env.DEPLOYMENT_ACCOUNT_KEY,
+                     "https://etc.connect.bloq.cloud/v1/etc-labs"),
+                network_id: 1,
+	        gas: 6000000,
+                gasPrice: 1000000000
+          },
           xdai: {
                 provider: new HDWalletProvider(
                      process.env.DEPLOYMENT_ACCOUNT_KEY,
