@@ -2,8 +2,8 @@
 
 pragma solidity ^0.6.6;
 
-import './interfaces/IAddressListFactory.sol';
-import './AddressList.sol';
+import "./interfaces/IAddressListFactory.sol";
+import "./AddressList.sol";
 
 contract AddressListFactory is IAddressListFactory {
     address[] private allLists;
@@ -18,7 +18,7 @@ contract AddressListFactory is IAddressListFactory {
     }
 
     function listAt(uint256 idx) external view override returns (address) {
-        require(idx < allLists.length, 'Index exceeds list length');
+        require(idx < allLists.length, "Index exceeds list length");
         return allLists[idx];
     }
 
