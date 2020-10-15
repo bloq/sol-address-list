@@ -52,9 +52,40 @@ contract AddressList is AccessControl, IAddressList {
         return _add(a, v);
     }
 
+    // Admin: add multiple (address,1) items to list
+    function addMulti(address[] calldata addrs) external override onlyListAdmin returns (uint256) {
+        uint256 updated = 0;
+        for (uint256 i = 0; i < addrs.length; i++) {
+            if (_add(addrs[i], 1))
+                updated++;
+        }
+        return updated;
+    }
+
+    // Admin: add multiple (address,n) items to list
+    function addValueMulti(address[] calldata addrs, uint256[] calldata values) external override onlyListAdmin returns (uint256) {
+        require(addrs.length == values.length, "Address and value array sizes must be equal");
+        uint256 updated = 0;
+        for (uint256 i = 0; i < addrs.length; i++) {
+            if (_add(addrs[i], values[i]))
+                updated++;
+        }
+        return updated;
+    }
+
     // Admin: remove address from list
     function remove(address a) external override onlyListAdmin returns (bool) {
         return _remove(a);
+    }
+
+    // Admin: remove multiple items from list
+    function removeMulti(address[] calldata addrs) external override onlyListAdmin returns (uint256) {
+        uint256 updated = 0;
+        for (uint256 i = 0; i < addrs.length; i++) {
+            if (_remove(addrs[i]))
+                updated++;
+        }
+        return updated;
     }
 
     ///////////////////////////////////////////////////////////////
