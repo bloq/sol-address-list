@@ -1,8 +1,10 @@
 {
   "name": "address-list",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "address list smart contract",
   "main": "truffle-config.js",
+  "license": "MIT",
+  "repository": "https://github.com/bloq/sol-address-list.git",
   "directories": {
     "test": "test"
   },
