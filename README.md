@@ -1,3 +1,5 @@
+[![Action Status](https://github.com/bloq/sol-address-list/workflows/Address%20List/badge.svg)](https://github.com/bloq/sol-address-list/actions)
+
 # address-list
 
 ## Summary

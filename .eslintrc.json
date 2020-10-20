@@ -7,6 +7,7 @@
 		"before": false,
 		"it": false,
 		"web3": false,
-		"describe": false
+		"describe": false,
+		"assert":false
 	}
 }
