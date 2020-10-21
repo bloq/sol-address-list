@@ -9,12 +9,13 @@
     "test": "test"
   },
   "scripts": {
-    "prettier:solidity": "./node_modules/.bin/prettier --write contracts/*.sol",
-    "solhint": "./node_modules/.bin/solhint ./contracts/*.sol",
-    "truffle": "./node_modules/.bin/truffle",
-    "ganache-cli": "./node_modules/.bin/ganache-cli",
-    "lint": "./node_modules/.bin/eslint ./test/*",
-    "lint:fix": "./node_modules/.bin/eslint --fix ./test --ext .js"
+    "solhint": "solhint ./contracts/**/*.sol",
+    "solhint:fix": "prettier --write contracts/**/*.sol",
+    "truffle": "truffle",
+    "ganache-cli": "ganache-cli",
+    "lint": "eslint ./test/*",
+    "lint:fix": "eslint --fix ./test --ext .js",
+    "coverage": "truffle run coverage"
   },
   "dependencies": {
     "config": "^3.3.1",
@@ -39,8 +40,14 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.0.5",
     "prettier-plugin-solidity": "^1.0.0-alpha.54",
+    "solc": "^0.6.6",
     "solhint": "^2.3.1",
     "solhint-plugin-prettier": "0.0.4",
+    "solidity-coverage": "^0.7.11",
     "truffle": "^5.1.32"
-  }
+  },
+  "pre-commit": [
+    "solhint",
+    "lint"
+  ]
 }
