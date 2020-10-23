@@ -9,5 +9,9 @@
 		"web3": false,
 		"describe": false,
 		"assert":false
-	}
+	},
+	"rules": {
+		"prefer-const":"error",
+		"semi": ["error", "never"]
+	  }
 }
