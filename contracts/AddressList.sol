@@ -30,6 +30,11 @@ contract AddressList is AccessControl, IAddressList {
         return theList.at(index);
     }
 
+    // Anyone: check list contains given address or.
+    function contains(address a) external view override returns (bool) {
+        return theList.contains(a);
+    }
+    
     // Anyone: total list length
     function length() external view override returns (uint256) {
         return theList.length();

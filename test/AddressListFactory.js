@@ -15,7 +15,7 @@ contract('AddressListFactory', async accounts => {
   })
 
   it('initial listCount is 0', async () => {
-    let answer = await factory.listCount()
+    const answer = await factory.listCount()
     assert.equal(answer, 0)
   })
 
@@ -27,20 +27,20 @@ contract('AddressListFactory', async accounts => {
   })
 
   it('createList should emit ListCreated', async () => {
-    let answer = await factory.createList.call()
-    let tx = await factory.createList()
+    const answer = await factory.createList.call()
+    const tx = await factory.createList()
     await expectEvent(tx, 'ListCreated', {_sender: accounts[0], _newList: answer})
   })
 
   it('should add lists sequentially', async () => {
-    let a0 = await factory.createList.call()
+    const a0 = await factory.createList.call()
     await factory.createList()
-    let a1 = await factory.createList.call()
+    const a1 = await factory.createList.call()
     await factory.createList()
-    let count = await factory.listCount()
+    const count = await factory.listCount()
     assert.equal(count, 2)
-    let b0 = await factory.listAt(0)
-    let b1 = await factory.listAt(1)
+    const b0 = await factory.listAt(0)
+    const b1 = await factory.listAt(1)
     assert.equal(a0, b0)
     assert.equal(a1, b1)
   })
@@ -58,15 +58,15 @@ contract('AddressListFactory', async accounts => {
   })
 
   it('ours(address) answers true with the address of a created list', async () => {
-    let listAddress = await factory.createList.call()
+    const listAddress = await factory.createList.call()
     await factory.createList()
     assert.equal(await factory.ours(listAddress), true)
   })
 
   it('new list should be owned by sender', async () => {
-    let newListAddress = await factory.createList.call()
+    const newListAddress = await factory.createList.call()
     await factory.createList()
-    let newList = await AddressList.at(newListAddress)
+    const newList = await AddressList.at(newListAddress)
     assert.equal(await newList.hasRole(LIST_ADMIN, accounts[0]), true)
   })
 })
