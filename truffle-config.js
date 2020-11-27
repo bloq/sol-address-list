@@ -7,6 +7,7 @@ let provider
 if (process.env.DEPLOYMENT_ACCOUNT_KEY) {
   provider = new HDWalletProvider(process.env.DEPLOYMENT_ACCOUNT_KEY, config.provider)
 }
+const gasPrice = 25000000000
 module.exports = {
   networks: {
     development: {
@@ -19,21 +20,21 @@ module.exports = {
       provider,
       network_id: 3,
       gas: 7000000,
-      gasPrice: 5000000000, // 5 Gwei
+      gasPrice,
       skipDryRun: true
     },
     kovan: {
       provider,
       network_id: 42,
       gas: 5000000,
-      gasPrice: 5000000000, // 5 Gwei
+      gasPrice,
       skipDryRun: true
     },
     etc: {
       provider,
       network_id: 1,
       gas: 6000000,
-      gasPrice: 1000000000
+      gasPrice
     },
     xdai: {
       provider,
@@ -45,7 +46,7 @@ module.exports = {
       provider,
       network_id: 1,
       gas: 6000000,
-      gasPrice: 42000000000
+      gasPrice
     }
   },
   compilers: {
