@@ -70,7 +70,7 @@ contract('AddressList', async (accounts) => {
 
     it('after add, contains should true', async () => {
       await list.add(accounts[1])
-      const answer = await list.get(accounts[1])
+      const answer = await list.contains(accounts[1])
       assert.equal(answer, true)
     })
 
