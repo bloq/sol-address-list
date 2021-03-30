@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.6;
+pragma solidity 0.8.3;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "./interfaces/IAddressList.sol";
@@ -18,7 +18,7 @@ contract AddressList is AccessControl, IAddressList {
     }
 
     // initialize owner and list-admin roles
-    constructor(address owner) public {
+    constructor(address owner) {
         _setupRole(DEFAULT_ADMIN_ROLE, owner);
         _setupRole(LIST_ADMIN, owner);
     }
@@ -34,7 +34,7 @@ contract AddressList is AccessControl, IAddressList {
     function contains(address a) external view override returns (bool) {
         return theList.contains(a);
     }
-    
+
     // Anyone: total list length
     function length() external view override returns (uint256) {
         return theList.length();
@@ -61,19 +61,27 @@ contract AddressList is AccessControl, IAddressList {
     function addMulti(address[] calldata addrs) external override onlyListAdmin returns (uint256) {
         uint256 updated = 0;
         for (uint256 i = 0; i < addrs.length; i++) {
-            if (_add(addrs[i], 1))
+            if (_add(addrs[i], 1)) {
                 updated++;
+            }
         }
         return updated;
     }
 
     // Admin: add multiple (address,n) items to list
-    function addValueMulti(address[] calldata addrs, uint256[] calldata values) external override onlyListAdmin returns (uint256) {
+    function addValueMulti(address[] calldata addrs, uint256[] calldata values)
+        external
+        override
+        onlyListAdmin
+        returns (uint256)
+    {
+        //solhint-disable-next-line reason-string
         require(addrs.length == values.length, "Address and value array sizes must be equal");
         uint256 updated = 0;
         for (uint256 i = 0; i < addrs.length; i++) {
-            if (_add(addrs[i], values[i]))
+            if (_add(addrs[i], values[i])) {
                 updated++;
+            }
         }
         return updated;
     }
@@ -87,8 +95,9 @@ contract AddressList is AccessControl, IAddressList {
     function removeMulti(address[] calldata addrs) external override onlyListAdmin returns (uint256) {
         uint256 updated = 0;
         for (uint256 i = 0; i < addrs.length; i++) {
-            if (_remove(addrs[i]))
+            if (_remove(addrs[i])) {
                 updated++;
+            }
         }
         return updated;
     }

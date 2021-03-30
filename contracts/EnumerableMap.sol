@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity 0.8.3;
 
 /**
  * @dev Library for managing an enumerable variant of Solidity's
@@ -142,6 +142,7 @@ library EnumerableMap {
      * - `index` must be strictly less than {length}.
      */
     function _at(Map storage map, uint256 index) private view returns (bytes32, bytes32) {
+        //solhint-disable-next-line reason-string
         require(map._entries.length > index, "EnumerableMap: index out of bounds");
 
         MapEntry storage entry = map._entries[index];
@@ -190,7 +191,7 @@ library EnumerableMap {
         address key,
         uint256 value
     ) internal returns (bool) {
-        return _set(map._inner, bytes32(uint256(key)), bytes32(value));
+        return _set(map._inner, bytes32(uint256(uint160(key))), bytes32(value));
     }
 
     /**
@@ -199,14 +200,14 @@ library EnumerableMap {
      * Returns true if the key was removed from the map, that is if it was present.
      */
     function remove(AddressToUintMap storage map, address key) internal returns (bool) {
-        return _remove(map._inner, bytes32(uint256(key)));
+        return _remove(map._inner, bytes32(uint256(uint160(key))));
     }
 
     /**
      * @dev Returns true if the key is in the map. O(1).
      */
     function contains(AddressToUintMap storage map, address key) internal view returns (bool) {
-        return _contains(map._inner, bytes32(uint256(key)));
+        return _contains(map._inner, bytes32(uint256(uint160(key))));
     }
 
     /**
@@ -225,13 +226,9 @@ library EnumerableMap {
      *
      * - `index` must be strictly less than {length}.
      */
-    function at(AddressToUintMap storage map, uint256 index)
-        internal
-        view
-        returns (address, uint256)
-    {
+    function at(AddressToUintMap storage map, uint256 index) internal view returns (address, uint256) {
         (bytes32 key, bytes32 value) = _at(map._inner, index);
-        return (address(uint256(key)), uint256(value));
+        return (address(uint160(uint256(key))), uint256(value));
     }
 
     /**
@@ -242,7 +239,7 @@ library EnumerableMap {
      * - `key` must be in the map.
      */
     function get(AddressToUintMap storage map, address key) internal view returns (uint256) {
-        return uint256(_get(map._inner, bytes32(uint256(key))));
+        return uint256(_get(map._inner, bytes32(uint256(uint160(key)))));
     }
 
     /**
@@ -253,6 +250,6 @@ library EnumerableMap {
         address key,
         string memory errorMessage
     ) internal view returns (uint256) {
-        return uint256(_get(map._inner, bytes32(uint256(key)), errorMessage));
+        return uint256(_get(map._inner, bytes32(uint256(uint160(key))), errorMessage));
     }
 }
