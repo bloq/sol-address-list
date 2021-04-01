@@ -2,12 +2,29 @@
   "name": "address-list",
   "version": "0.9.9",
   "description": "address list smart contract",
-  "main": "truffle-config.js",
+  "homepage": "https://www.bloq.com/",
   "license": "MIT",
+  "author": "Manoj Patidar <manoj@bloq.com>",
   "repository": "https://github.com/bloq/sol-address-list.git",
   "directories": {
     "test": "test"
   },
+  "files": [
+    "/contracts/**/*.sol",
+    "/build/contracts/*.json",
+    "!/contracts/mocks/**/*"
+  ],
+  "keywords": [
+    "addresses",
+    "contracts",
+    "erc-20",
+    "eth",
+    "list",
+    "metadata",
+    "pools",
+    "tokens",
+    "address-list"
+  ],
   "scripts": {
     "solhint": "solhint ./contracts/**/*.sol",
     "solhint:fix": "prettier --write contracts/**/*.sol",

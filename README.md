@@ -10,6 +10,27 @@ This is a simple list of admin-controlled addresses, forming an
 ```
 on-chain mapping data type.
 
+## Install
+```
+npm i address-list --save
+
+```
+
+## How to use
+```
+// MyContract.sol
+contract MyContract {
+    IAddressList public immutable list;
+    constructor() public {
+        // Use latest factory contract address from ./deploy/*/contracts.json 
+        IAddressListFactory addressFactory =
+            IAddressListFactory(0xD57b41649f822C51a73C44Ba0B3da4A880aF0029);
+        list = IAddressList(addressFactory.createList());
+    }
+  
+}
+```
+
 ## Overview
 
 The primary uses include governance, on-chain security, creating on-chain filtering lists, or creating
