@@ -1,0 +1,14 @@
+{
+   "version" : "1.0.0",
+   "networks" : {
+      "mainnet" : {
+         "AddressListFactory" : "0xded8217De022706A191eE7Ee0Dc9df1185Fb5dA3"
+      },
+      "ropsten" : {
+         "AddressListFactory" : "0x726F50D5f89d174BBFCA79209b3832BccfC0918C"
+      },
+      "kovan" : {
+         "AddressListFactory" : "0xefe48370DB8f8Ee343f4f24Ee0B09cC4A8FC3D76"
+      }
+   }
+}
