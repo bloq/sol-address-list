@@ -47,6 +47,12 @@ module.exports = {
       network_id: 1,
       gas: 6000000,
       gasPrice
+    },
+    avalanche: {
+      provider,
+      network_id: 43114,
+      gas: 8000000,
+      gasPrice
     }
   },
   compilers: {
