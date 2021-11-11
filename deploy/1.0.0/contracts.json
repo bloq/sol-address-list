@@ -12,6 +12,9 @@
       },
       "kovan" : {
          "AddressListFactory" : "0xefe48370DB8f8Ee343f4f24Ee0B09cC4A8FC3D76"
-      }
+      },
+     "avalanche": {
+         "AddressListFactory" : "0xc5cdf8cbe886fc5c1ef5cd4fdd599c975ec6bb54"
+      },
    }
 }
