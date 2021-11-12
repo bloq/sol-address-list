@@ -50,7 +50,7 @@ module.exports = {
     },
     avalanche: {
       provider,
-      network_id: 43114,
+      network_id: '*',
       gas: 8000000,
       gasPrice
     },
