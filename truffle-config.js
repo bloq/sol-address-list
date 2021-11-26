@@ -57,7 +57,7 @@ module.exports = {
     arbitrum: {
       provider,
       network_id: 42161,
-      gas: 57000000,
+      gas: 8000000,
       gasPrice
     }
   },
