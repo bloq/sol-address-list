@@ -89,7 +89,7 @@ contract('AddressList', async (accounts) => {
     })
 
     it('add duplicate should return false', async () => {
-      list.add(accounts[1])
+      await list.add(accounts[1])
       const answer = await list.add.call(accounts[1])
       assert.equal(answer, false)
     })
