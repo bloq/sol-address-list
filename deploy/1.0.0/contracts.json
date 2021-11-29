@@ -15,6 +15,9 @@
       },
      "avalanche": {
          "AddressListFactory" : "0xc5cdf8cbe886fc5c1ef5cd4fdd599c975ec6bb54"
+     },
+     "arbitrum": {
+         "AddressListFactory" : "0xc5cdf8cbe886fc5c1ef5cd4fdd599c975ec6bb54"
       },
    }
 }
